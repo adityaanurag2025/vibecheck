@@ -1,0 +1,3 @@
+# Deliberately INCOMPLETE — vibecheck should flag missing .env* entries.
+node_modules/
+.next/
