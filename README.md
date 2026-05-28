@@ -21,7 +21,7 @@ Run once. Get a severity-tiered report in 30 seconds. Decide what to fix.
 ## Install
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/YOUR_USERNAME/vibecheck/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/adityaanurag2025/vibecheck/main/install.sh | bash
 ```
 
 That installs the skill into `~/.claude/skills/vibecheck/`. No npm, no Node deps, nothing to configure.

@@ -3,7 +3,7 @@
 set -euo pipefail
 
 INSTALL_DIR="${HOME}/.claude/skills/vibecheck"
-REPO_URL="${VIBECHECK_REPO_URL:-https://github.com/YOUR_USERNAME/vibecheck.git}"
+REPO_URL="${VIBECHECK_REPO_URL:-https://github.com/adityaanurag2025/vibecheck.git}"
 TMP_DIR="$(mktemp -d)"
 
 echo "vibecheck installer"
