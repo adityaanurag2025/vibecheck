@@ -6,6 +6,8 @@ A Claude Code skill that audits AI-generated Next.js apps for the 12 things that
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
+![vibecheck report card — demo-app scores 0.0/10 with 5 critical, 8 high, 5 medium findings](assets/report-card.png)
+
 ---
 
 ## What it does

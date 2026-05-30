@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  :root {
+    --bg: #0d1117;
+    --panel: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --crit: #f85149;
+    --high: #d29922;
+    --med: #d4af37;
+    --green: #3fb950;
+    --mono: "SF Mono", "JetBrains Mono", "Menlo", "Consolas", monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #010409; }
+  /* Capture target — fixed size for a clean 2x PNG */
+  .card {
+    width: 1000px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    font-family: var(--mono);
+    color: var(--text);
+  }
+  .titlebar {
+    display: flex; align-items: center; gap: 8px;
+    padding: 14px 18px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+  }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot.r { background: #ff5f56; }
+  .dot.y { background: #ffbd2e; }
+  .dot.g { background: #27c93f; }
+  .titlebar .name { margin-left: 8px; color: var(--muted); font-size: 14px; }
+  .body { padding: 34px 40px 40px; }
+
+  .header { display: flex; align-items: baseline; gap: 14px; }
+  .header .prompt { color: var(--green); font-size: 22px; }
+  .header .cmd { color: var(--text); font-size: 22px; }
+  .complete { color: var(--muted); font-size: 15px; margin: 14px 0 26px; }
+  .complete b { color: var(--text); }
+
+  .score-row { display: flex; align-items: center; gap: 22px; margin-bottom: 30px; }
+  .score-num {
+    font-size: 78px; font-weight: 700; line-height: 1;
+    color: var(--crit); letter-spacing: -2px;
+  }
+  .score-meta .of { color: var(--muted); font-size: 20px; }
+  .score-meta .label {
+    margin-top: 8px; display: inline-block;
+    background: rgba(248,81,73,.12); color: var(--crit);
+    border: 1px solid rgba(248,81,73,.4);
+    padding: 5px 12px; border-radius: 6px; font-size: 15px; font-weight: 600;
+  }
+
+  .tiers { display: flex; gap: 14px; margin-bottom: 32px; }
+  .tier {
+    flex: 1; background: var(--panel); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px 20px;
+  }
+  .tier .n { font-size: 34px; font-weight: 700; line-height: 1; }
+  .tier .t { color: var(--muted); font-size: 14px; margin-top: 8px; }
+  .tier.c .n { color: var(--crit); }
+  .tier.h .n { color: var(--high); }
+  .tier.m .n { color: var(--med); }
+
+  .fix-h { color: var(--muted); font-size: 14px; text-transform: uppercase;
+           letter-spacing: 1.5px; margin-bottom: 16px; }
+  .fix { display: flex; gap: 14px; margin-bottom: 16px; align-items: flex-start; }
+  .fix .i { color: var(--green); font-weight: 700; font-size: 16px; min-width: 18px; }
+  .fix .txt { font-size: 16px; line-height: 1.5; color: var(--text); }
+  .fix .txt code {
+    background: rgba(110,118,129,.25); padding: 1px 6px; border-radius: 5px;
+    font-size: 14px; color: #ffa657;
+  }
+
+  .footer {
+    margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    color: var(--muted); font-size: 14px;
+  }
+  .footer .out code { color: var(--green); }
+</style>
+</head>
+<body>
+  <div class="card" id="card">
+    <div class="titlebar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="name">claude code — vibecheck</span>
+    </div>
+    <div class="body">
+      <div class="header">
+        <span class="prompt">&gt;</span>
+        <span class="cmd">vibecheck this project</span>
+      </div>
+      <div class="complete">🔍 <b>vibecheck complete</b> — audited demo-app in ~30s</div>
+
+      <div class="score-row">
+        <div class="score-num">0.0</div>
+        <div class="score-meta">
+          <div class="of">/ 10</div>
+          <div class="label">Critical — Do Not Deploy</div>
+        </div>
+      </div>
+
+      <div class="tiers">
+        <div class="tier c"><div class="n">🔴 5</div><div class="t">Critical · security / data loss</div></div>
+        <div class="tier h"><div class="n">🟠 8</div><div class="t">High · prod failure</div></div>
+        <div class="tier m"><div class="n">🟡 5</div><div class="t">Medium · UX / ops</div></div>
+      </div>
+
+      <div class="fix-h">Top 3 to fix first</div>
+      <div class="fix"><span class="i">1.</span><span class="txt">Hardcoded OpenAI API key in <code>lib/ai.ts:2</code> — rotate it now, it's public.</span></div>
+      <div class="fix"><span class="i">2.</span><span class="txt"><code>.env</code> &amp; <code>.env.local</code> committed to git — secrets are in your history.</span></div>
+      <div class="fix"><span class="i">3.</span><span class="txt"><code>DELETE /api/todos</code> accepts any request with no auth check — anyone can delete anything.</span></div>
+
+      <div class="footer">
+        <span class="out">→ full report written to <code>vibecheck-report.md</code></span>
+        <span>github.com/adityaanurag2025/vibecheck</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
